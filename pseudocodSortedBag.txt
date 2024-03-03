@@ -1,0 +1,45 @@
+subalgorithm intersection(SortedBag& other) is:
+//pre: index1, index2 sind die Indizen der Bags 
+//post: es gibt das result zuruck 
+    SortedBag result(relation)
+    int index1 <- 0
+    int index2 <- 0
+    int resultSize <- 0
+    int resultCapacity <- std::min(s, other.s)
+    TComp* resultInfo <- new TComp[resultCapacity]()
+    int* resultLeft <- new int[resultCapacity]()
+    int* resultRight <- new int[resultCapacity]()
+
+    
+    while index1 < s and index2 < other.s 
+        TComp current1 <- info[index1];
+        TComp current2 <-other.info[index2];
+
+        if current1 = current2 then
+            resultInfo[resultSize] <- current1;
+            resultLeft[resultSize] <- -1;
+            resultRight[resultSize] <- -1;
+            resultSize<-resultSize+1
+            index1<-index1+1
+            index2<-index2+1
+        else if relation(current1, current2) 
+            index1<-index1+1
+        else 
+            index2<-index2+1
+        end-if
+    end-while
+    
+    
+    delete[] result.info;
+    delete[] result.left;
+    delete[] result.right;
+    result.info <- resultInfo;
+    result.left <- resultLeft;
+    result.right <- resultRight;
+    result.s <- resultSize;
+    result.cap <- resultCapacity;
+    result.firstEmpty <- -1;
+    result.root <- -1;
+
+    return result
+end-subalgorithm
